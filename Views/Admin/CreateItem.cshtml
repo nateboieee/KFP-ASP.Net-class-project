@@ -1,0 +1,57 @@
+@model MenuItem
+@{
+    ViewData["Title"] = "Add Menu Item";
+    var categories = (List<MenuCategory>)ViewBag.Categories;
+}
+
+<section class="container py-5">
+    <h1 class="kfp-section-title">Add Menu Item</h1>
+    <form asp-action="CreateItem" method="post" class="row g-3" style="max-width: 600px;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="col-12">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="col-6">
+            <label asp-for="Price" class="form-label"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="col-6">
+            <label asp-for="Icon" class="form-label">Icon (emoji)</label>
+            <input asp-for="Icon" class="form-control" />
+        </div>
+        <div class="col-12">
+            <label asp-for="MenuCategoryId" class="form-label">Category</label>
+            <select asp-for="MenuCategoryId" class="form-select">
+                @foreach (var c in categories)
+                {
+                    <option value="@c.Id">@c.Icon @c.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-12 d-flex gap-4">
+            <div class="form-check">
+                <input asp-for="IsAvailable" class="form-check-input" />
+                <label asp-for="IsAvailable" class="form-check-label"></label>
+            </div>
+            <div class="form-check">
+                <input asp-for="IsSpicy" class="form-check-input" />
+                <label asp-for="IsSpicy" class="form-check-label"></label>
+            </div>
+            <div class="form-check">
+                <input asp-for="IsFeatured" class="form-check-input" />
+                <label asp-for="IsFeatured" class="form-check-label"></label>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-kfp">Save Item</button>
+            <a asp-action="Items" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </form>
+</section>

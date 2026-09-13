@@ -1,0 +1,64 @@
+@model MenuIndexViewModel
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<section class="container py-5">
+    <h1 class="kfp-section-title">Our Menu</h1>
+
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-md-6">
+            <input type="text" name="search" value="@Model.SearchTerm" class="form-control" placeholder="Search the menu (e.g. 'spicy', 'bucket')" />
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-kfp-outline w-100">Search</button>
+        </div>
+    </form>
+
+    <div class="mb-4">
+        <a class="kfp-category-pill @(Model.SelectedCategoryId == null ? "active" : "")" asp-action="Index">All</a>
+        @foreach (var c in Model.Categories)
+        {
+            <a class="kfp-category-pill @(Model.SelectedCategoryId == c.Id ? "active" : "")" asp-action="Index" asp-route-categoryId="@c.Id">@c.Icon @c.Name</a>
+        }
+    </div>
+
+    @if (!Model.Items.Any())
+    {
+        <p class="text-muted">No items found. Try a different search or category.</p>
+    }
+
+    <div class="row g-4">
+        @foreach (var item in Model.Items)
+        {
+            <div class="col-sm-6 col-lg-4">
+                <div class="kfp-card">
+                    <a asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none text-reset">
+                        <div class="kfp-card-icon">@item.Icon</div>
+                    </a>
+                    <div class="kfp-card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5 class="kfp-card-title">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none text-reset">@item.Name</a>
+                            </h5>
+                            @if (item.IsSpicy)
+                            {
+                                <span class="kfp-badge-spicy">🌶 SPICY</span>
+                            }
+                        </div>
+                        <p class="text-muted small mb-1">@item.MenuCategory?.Name</p>
+                        <p class="text-muted small">@item.Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="kfp-price">$@item.Price.ToString("0.00")</span>
+                            <form asp-controller="Cart" asp-action="Add" method="post">
+                                <input type="hidden" name="menuItemId" value="@item.Id" />
+                                <input type="hidden" name="returnUrl" value="@Url.Action("Index", "Menu", new { categoryId = Model.SelectedCategoryId, search = Model.SearchTerm })" />
+                                <button type="submit" class="btn btn-kfp btn-sm">Add to Bucket</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

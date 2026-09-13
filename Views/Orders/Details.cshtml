@@ -1,0 +1,30 @@
+@model Order
+@{
+    ViewData["Title"] = $"Order #{Model.Id}";
+}
+
+<section class="container py-5">
+    <a asp-action="History" class="btn btn-kfp-outline btn-sm mb-4">&larr; Back to My Orders</a>
+    <h1 class="kfp-section-title">Order #@Model.Id</h1>
+
+    <div class="kfp-total-box" style="max-width: 600px;">
+        <p><strong>Date:</strong> @Model.OrderDate.ToString("MMM d, yyyy h:mm tt")</p>
+        <p><strong>Status:</strong> <span class="badge bg-secondary">@Model.Status</span></p>
+        <p><strong>Delivery to:</strong> @Model.DeliveryAddress</p>
+        <p><strong>Phone:</strong> @Model.PhoneNumber</p>
+        <p><strong>Payment:</strong> @Model.PaymentMethod</p>
+        <hr />
+        @foreach (var oi in Model.OrderItems)
+        {
+            <div class="d-flex justify-content-between small mb-1">
+                <span>@oi.Quantity &times; @oi.ItemName</span>
+                <span>$@oi.LineTotal.ToString("0.00")</span>
+            </div>
+        }
+        <hr />
+        <div class="d-flex justify-content-between fw-bold fs-5">
+            <span>Total</span>
+            <span>$@Model.TotalAmount.ToString("0.00")</span>
+        </div>
+    </div>
+</section>

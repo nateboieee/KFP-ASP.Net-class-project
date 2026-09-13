@@ -1,0 +1,290 @@
+:root {
+  --kfp-red: #c8102e;
+  --kfp-dark-red: #970022;
+  --kfp-black: #1a1a1a;
+  --kfp-cream: #fff8ee;
+  --kfp-gold: #f2c14e;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--kfp-cream);
+  color: var(--kfp-black);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+a {
+  color: var(--kfp-dark-red);
+}
+
+/* ---------- Topbar & Navbar ---------- */
+
+.kfp-topbar {
+  background-color: var(--kfp-black);
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 6px 0;
+}
+
+.kfp-navbar {
+  background-color: var(--kfp-red);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.kfp-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.kfp-logo-badge {
+  background-color: #fff;
+  color: var(--kfp-red);
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: 50%;
+  border: 3px solid var(--kfp-black);
+  line-height: 1;
+}
+
+.kfp-tagline {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.kfp-nav-link {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.kfp-nav-link:hover {
+  color: var(--kfp-gold) !important;
+}
+
+.kfp-cart-badge {
+  background: var(--kfp-black);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  position: relative;
+  top: -8px;
+  margin-left: 2px;
+}
+
+.kfp-btn-outline {
+  border: 2px solid #fff;
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 4px 18px;
+}
+
+.kfp-btn-outline:hover {
+  background: #fff;
+  color: var(--kfp-red) !important;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn-kfp {
+  background-color: var(--kfp-red);
+  border-color: var(--kfp-red);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 24px;
+  padding: 10px 26px;
+}
+
+.btn-kfp:hover {
+  background-color: var(--kfp-dark-red);
+  border-color: var(--kfp-dark-red);
+  color: #fff;
+}
+
+.btn-kfp-outline {
+  background: transparent;
+  border: 2px solid var(--kfp-red);
+  color: var(--kfp-red);
+  font-weight: 700;
+  border-radius: 24px;
+  padding: 8px 24px;
+}
+
+.btn-kfp-outline:hover {
+  background: var(--kfp-red);
+  color: #fff;
+}
+
+/* ---------- Hero ---------- */
+
+.kfp-hero {
+  background: linear-gradient(135deg, var(--kfp-red) 0%, var(--kfp-dark-red) 100%);
+  color: #fff;
+  padding: 70px 0;
+  text-align: center;
+}
+
+.kfp-hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.25);
+}
+
+.kfp-hero .kfp-hero-emoji {
+  font-size: 5rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.kfp-hero p.lead {
+  font-size: 1.25rem;
+  max-width: 640px;
+  margin: 0 auto 24px;
+}
+
+/* ---------- Cards ---------- */
+
+.kfp-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  overflow: hidden;
+  height: 100%;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.kfp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.kfp-card-icon {
+  background: var(--kfp-gold);
+  font-size: 3.5rem;
+  text-align: center;
+  padding: 24px 0;
+}
+
+.kfp-card-body {
+  padding: 18px;
+}
+
+.kfp-card-title {
+  font-weight: 700;
+  color: var(--kfp-black);
+}
+
+.kfp-price {
+  color: var(--kfp-red);
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+
+.kfp-badge-spicy {
+  background: var(--kfp-red);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+/* ---------- Category pills ---------- */
+
+.kfp-category-pill {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 2px solid var(--kfp-red);
+  color: var(--kfp-red);
+  font-weight: 700;
+  text-decoration: none;
+  margin: 4px;
+}
+
+.kfp-category-pill.active,
+.kfp-category-pill:hover {
+  background: var(--kfp-red);
+  color: #fff;
+}
+
+/* ---------- Sections ---------- */
+
+.kfp-section-title {
+  font-weight: 800;
+  color: var(--kfp-black);
+  border-left: 6px solid var(--kfp-red);
+  padding-left: 12px;
+  margin-bottom: 24px;
+}
+
+.kfp-stripe {
+  background-repeat: repeat-x;
+  height: 10px;
+  background: repeating-linear-gradient(45deg, var(--kfp-red), var(--kfp-red) 12px, var(--kfp-black) 12px, var(--kfp-black) 24px);
+}
+
+/* ---------- Footer ---------- */
+
+.kfp-footer {
+  background: var(--kfp-black);
+  color: #fff;
+  padding: 40px 0 20px;
+  margin-top: 60px;
+}
+
+.kfp-footer a {
+  color: #fff9;
+  text-decoration: none;
+}
+
+.kfp-footer a:hover {
+  color: var(--kfp-gold);
+}
+
+.kfp-footer-heading {
+  color: var(--kfp-gold);
+  font-weight: 700;
+}
+
+/* ---------- Cart / Checkout ---------- */
+
+.kfp-cart-row {
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 14px 0;
+}
+
+.kfp-total-box {
+  background: #fff;
+  border: 2px dashed var(--kfp-red);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* ---------- Auth pages (Identity UI) ---------- */
+
+.kfp-auth-card {
+  max-width: 480px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.08);
+}

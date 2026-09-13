@@ -1,0 +1,115 @@
+@inject KFP.Services.CartService CartService
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - KFP | Kentucky Fried Pork</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <div class="kfp-topbar">
+            <div class="container d-flex justify-content-between">
+                <span>🚚 Free delivery on orders over $25</span>
+                <span>📞 Order by phone: 1-800-KFP-PORK</span>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark kfp-navbar">
+            <div class="container">
+                <a class="navbar-brand kfp-brand" asp-controller="Home" asp-action="Index">
+                    <span class="kfp-logo-badge">KFP</span>
+                    <span class="kfp-tagline d-none d-md-inline">Kentucky Fried Pork</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-lg-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item"><a class="nav-link kfp-nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link kfp-nav-link" asp-controller="Menu" asp-action="Index">Menu</a></li>
+                        <li class="nav-item"><a class="nav-link kfp-nav-link" asp-controller="Home" asp-action="About">About</a></li>
+                        <li class="nav-item"><a class="nav-link kfp-nav-link" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    </ul>
+                    <ul class="navbar-nav align-items-lg-center">
+                        <li class="nav-item">
+                            <a class="nav-link kfp-nav-link position-relative" asp-controller="Cart" asp-action="Index">
+                                🛒 Bucket
+                                @{
+                                    var count = CartService.ItemCount();
+                                }
+                                @if (count > 0)
+                                {
+                                    <span class="kfp-cart-badge">@count</span>
+                                }
+                            </a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    @{
+        var success = TempData["Success"] as string;
+        var error = TempData["Error"] as string;
+    }
+    @if (!string.IsNullOrEmpty(success))
+    {
+        <div class="container mt-3">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @success
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(error))
+    {
+        <div class="container mt-3">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @error
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    }
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="kfp-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <h5 class="kfp-footer-heading">KFP</h5>
+                    <p class="text-white-50">Finger Lickin' Pork since forever. A juicy parody brand for demo purposes only — not affiliated with any real fried chicken chain.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="kfp-footer-heading">Explore</h5>
+                    <ul class="list-unstyled">
+                        <li><a asp-controller="Menu" asp-action="Index">Full Menu</a></li>
+                        <li><a asp-controller="Home" asp-action="About">About Us</a></li>
+                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        <li><a asp-controller="Home" asp-action="Privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="kfp-footer-heading">Visit Us</h5>
+                    <p class="text-white-50 mb-0">123 Crispy Lane<br />Pork City, PC 11111</p>
+                    <p class="text-white-50">Open daily 10am – 11pm</p>
+                </div>
+            </div>
+            <hr class="border-light opacity-25" />
+            <p class="text-center text-white-50 mb-0">&copy; @DateTime.Now.Year - KFP - Kentucky Fried Pork (parody brand, for demo purposes)</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

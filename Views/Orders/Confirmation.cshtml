@@ -1,0 +1,31 @@
+@model Order
+@{
+    ViewData["Title"] = "Order Confirmed";
+}
+
+<section class="container py-5 text-center">
+    <span style="font-size:5rem;">✅🍗</span>
+    <h1 class="fw-bold">Order Confirmed!</h1>
+    <p class="lead text-muted">Thanks for your order — it's headed to the fryer.</p>
+    <div class="kfp-total-box text-start mx-auto" style="max-width: 500px;">
+        <p><strong>Order #</strong> @Model.Id</p>
+        <p><strong>Status:</strong> @Model.Status</p>
+        <p><strong>Delivery to:</strong> @Model.DeliveryAddress</p>
+        <p><strong>Phone:</strong> @Model.PhoneNumber</p>
+        <p><strong>Payment:</strong> @Model.PaymentMethod</p>
+        <hr />
+        @foreach (var oi in Model.OrderItems)
+        {
+            <div class="d-flex justify-content-between small mb-1">
+                <span>@oi.Quantity &times; @oi.ItemName</span>
+                <span>$@oi.LineTotal.ToString("0.00")</span>
+            </div>
+        }
+        <hr />
+        <div class="d-flex justify-content-between fw-bold fs-5">
+            <span>Total</span>
+            <span>$@Model.TotalAmount.ToString("0.00")</span>
+        </div>
+    </div>
+    <a asp-controller="Menu" asp-action="Index" class="btn btn-kfp mt-4">Order More</a>
+</section>

@@ -1,0 +1,68 @@
+@model List<MenuItem>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="kfp-hero">
+    <div class="container">
+        <span class="kfp-hero-emoji">🍗🪣🍗</span>
+        <h1>FINGER LICKIN' PORK</h1>
+        <p class="lead">Crispy, juicy, secret-recipe fried pork. Buckets, combos, and sandwiches made for sharing (or not).</p>
+        <a class="btn btn-kfp btn-lg" asp-controller="Menu" asp-action="Index">Order Now</a>
+    </div>
+</section>
+<div class="kfp-stripe"></div>
+
+<section class="container py-5">
+    <h2 class="kfp-section-title">Fan Favorites</h2>
+    <div class="row g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-lg-4">
+                <div class="kfp-card">
+                    <div class="kfp-card-icon">@item.Icon</div>
+                    <div class="kfp-card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5 class="kfp-card-title">@item.Name</h5>
+                            @if (item.IsSpicy)
+                            {
+                                <span class="kfp-badge-spicy">🌶 SPICY</span>
+                            }
+                        </div>
+                        <p class="text-muted small">@item.Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="kfp-price">$@item.Price.ToString("0.00")</span>
+                            <a class="btn btn-kfp-outline btn-sm" asp-controller="Menu" asp-action="Details" asp-route-id="@item.Id">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="container pb-5">
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="p-4">
+                <div class="display-4">🐷</div>
+                <h5 class="fw-bold">Secret Recipe</h5>
+                <p class="text-muted">11 herbs, spices, and a lot of secrecy.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4">
+                <div class="display-4">🚚</div>
+                <h5 class="fw-bold">Fast Delivery</h5>
+                <p class="text-muted">Hot buckets at your door, quick.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4">
+                <div class="display-4">💯</div>
+                <h5 class="fw-bold">Always Crispy</h5>
+                <p class="text-muted">Freshly fried, every single order.</p>
+            </div>
+        </div>
+    </div>
+</section>
