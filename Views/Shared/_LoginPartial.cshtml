@@ -1,0 +1,36 @@
+@using Microsoft.AspNetCore.Identity
+@using KFP.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav align-items-lg-center">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <a class="nav-link kfp-nav-link" asp-controller="Orders" asp-action="History">My Orders</a>
+    </li>
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="nav-item">
+            <a class="nav-link kfp-nav-link" asp-controller="Admin" asp-action="Index">Admin</a>
+        </li>
+    }
+    <li class="nav-item">
+        <a class="nav-link kfp-nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hi, @User.Identity?.Name!</a>
+    </li>
+    <li class="nav-item">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="nav-link btn btn-link kfp-nav-link">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link kfp-nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="btn kfp-btn-outline ms-lg-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+}
+</ul>

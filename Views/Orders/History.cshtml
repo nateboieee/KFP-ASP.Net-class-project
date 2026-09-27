@@ -1,0 +1,43 @@
+@model List<Order>
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<section class="container py-5">
+    <h1 class="kfp-section-title">My Orders</h1>
+
+    @if (!Model.Any())
+    {
+        <p class="text-muted">You haven't ordered anything yet. <a asp-controller="Menu" asp-action="Index">Browse the menu</a>.</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table align-middle bg-white">
+                <thead>
+                    <tr>
+                        <th>Order #</th>
+                        <th>Date</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var o in Model)
+                    {
+                        <tr>
+                            <td>#@o.Id</td>
+                            <td>@o.OrderDate.ToString("MMM d, yyyy h:mm tt")</td>
+                            <td>@o.OrderItems.Sum(i => i.Quantity) item(s)</td>
+                            <td>$@o.TotalAmount.ToString("0.00")</td>
+                            <td><span class="badge bg-secondary">@o.Status</span></td>
+                            <td><a asp-action="Details" asp-route-id="@o.Id" class="btn btn-sm btn-kfp-outline">Details</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

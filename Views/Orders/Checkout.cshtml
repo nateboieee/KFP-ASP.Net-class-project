@@ -1,0 +1,55 @@
+@model CheckoutViewModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<section class="container py-5">
+    <h1 class="kfp-section-title">Checkout</h1>
+    <div class="row g-5">
+        <div class="col-lg-7">
+            <form asp-action="Checkout" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3">
+                    <label asp-for="DeliveryAddress" class="form-label"></label>
+                    <textarea asp-for="DeliveryAddress" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="DeliveryAddress" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="PhoneNumber" class="form-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="PaymentMethod" class="form-label"></label>
+                    <select asp-for="PaymentMethod" class="form-select">
+                        <option>Cash on Delivery</option>
+                        <option>Credit / Debit Card</option>
+                        <option>Digital Wallet</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-kfp btn-lg w-100">Place Order</button>
+            </form>
+        </div>
+        <div class="col-lg-5">
+            <div class="kfp-total-box">
+                <h5 class="fw-bold">Your Order</h5>
+                @foreach (var item in Model.Items)
+                {
+                    <div class="d-flex justify-content-between small mb-1">
+                        <span>@item.Quantity &times; @item.Name</span>
+                        <span>$@item.LineTotal.ToString("0.00")</span>
+                    </div>
+                }
+                <hr />
+                <div class="d-flex justify-content-between fw-bold fs-5">
+                    <span>Total</span>
+                    <span>$@Model.Total.ToString("0.00")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

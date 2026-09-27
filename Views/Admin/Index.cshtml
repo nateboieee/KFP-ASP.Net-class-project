@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<section class="container py-5">
+    <h1 class="kfp-section-title">Admin Dashboard</h1>
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="kfp-total-box text-center">
+                <div class="display-5 fw-bold">@ViewBag.ItemCount</div>
+                <div class="text-muted">Menu Items</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kfp-total-box text-center">
+                <div class="display-5 fw-bold">@ViewBag.OrderCount</div>
+                <div class="text-muted">Orders</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kfp-total-box text-center">
+                <div class="display-5 fw-bold">@ViewBag.UserCount</div>
+                <div class="text-muted">Registered Users</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex gap-3">
+        <a asp-action="Items" class="btn btn-kfp">Manage Menu Items</a>
+        <a asp-action="Orders" class="btn btn-kfp-outline">Manage Orders</a>
+    </div>
+</section>

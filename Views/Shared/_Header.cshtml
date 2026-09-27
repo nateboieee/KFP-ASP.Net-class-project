@@ -1,0 +1,43 @@
+@inject KFP.Services.CartService CartService
+<header>
+    <div class="kfp-topbar">
+        <div class="container d-flex justify-content-between">
+            <span>🚚 Free delivery on orders over $25</span>
+            <span>📞 Order by phone: 1-800-KFP-PORK</span>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark kfp-navbar">
+        <div class="container">
+            <a class="navbar-brand kfp-brand" asp-controller="Home" asp-action="Index">
+                <span class="kfp-logo-badge">KFP</span>
+                <span class="kfp-tagline d-none d-md-inline">Kentucky Fried Pork</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-lg-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item"><a class="nav-link kfp-nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link kfp-nav-link" asp-controller="Menu" asp-action="Index">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link kfp-nav-link" asp-controller="Home" asp-action="About">About</a></li>
+                    <li class="nav-item"><a class="nav-link kfp-nav-link" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                </ul>
+                <ul class="navbar-nav align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link kfp-nav-link position-relative" asp-controller="Cart" asp-action="Index">
+                            🛒 Bucket
+                            @{
+                                var count = CartService.ItemCount();
+                            }
+                            @if (count > 0)
+                            {
+                                <span class="kfp-cart-badge">@count</span>
+                            }
+                        </a>
+                    </li>
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+</header>
