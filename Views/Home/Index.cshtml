@@ -5,7 +5,9 @@
 
 <section class="kfp-hero">
     <div class="container">
-        <span class="kfp-hero-emoji">🍗🪣🍗</span>
+        <img src="~/images/asset/ChatGPT KFP logo.png"
+     alt="KFP Logo"
+     class="kfp-img-header" />
         <h1>FINGER LICKIN' PORK</h1>
         <p class="lead">Crispy, juicy, secret-recipe fried pork. Buckets, combos, and sandwiches made for sharing (or not).</p>
         <a class="btn btn-kfp btn-lg" asp-controller="Menu" asp-action="Index">Order Now</a>
@@ -20,14 +22,16 @@
         {
             <div class="col-sm-6 col-lg-4">
                 <div class="kfp-card">
+                    <a class="text-decoration-none" asp-controller="Menu" asp-action="Details" asp-route-id="@item.Id">
                     @if (!string.IsNullOrEmpty(item.ImageUrl))
                     {
                         <img src="@item.ImageUrl" alt="@item.Name" class="kfp-card-img" />
                     }
                     else
                     {
-                        <div class="kfp-card-icon">@item.Icon</div>
+                        <div class="kfp-placeholder">@item.PlaceholderText</div>
                     }
+                    </a>
                     <div class="kfp-card-body">
                         <div class="d-flex justify-content-between align-items-start">
                             <h5 class="kfp-card-title">@item.Name</h5>
@@ -48,7 +52,7 @@
     </div>
 </section>
 
-<section class="container pb-5">
+<section class="container-fluid pb-5" style="background-color: antiquewhite;">
     <div class="row g-4 text-center">
         <div class="col-md-4">
             <div class="p-4">

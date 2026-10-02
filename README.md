@@ -127,6 +127,10 @@ configuring one provider (e.g. just Google) is fine.
   queries go through EF Core / LINQ-to-SQL under the hood.
 - The schema is created automatically via `Database.EnsureCreatedAsync()` in
   `Data/DbInitializer.cs` — no manual migration step is required to get started.
+- `EnsureCreatedAsync()` only *creates* the schema if `app.db` doesn't exist yet — it does not
+  alter an existing database. So any time the model classes change (like the Icon →
+  PlaceholderText change in this version), **delete `app.db`** (and the `-shm`/`-wal` files
+  next to it, if present) before running again, so it gets recreated with the new schema.
 - If you'd rather use **SQL Server** instead of SQLite:
   1. Swap the package in `KFP.csproj`: remove `Microsoft.EntityFrameworkCore.Sqlite`, add
      `Microsoft.EntityFrameworkCore.SqlServer`.

@@ -48,7 +48,7 @@ public class CartService
                 MenuItemId = item.Id,
                 Name = item.Name,
                 Price = item.Price,
-                Icon = item.Icon,
+                PlaceholderText = item.PlaceholderText,
                 ImageUrl = item.ImageUrl,
                 Quantity = quantity
             });

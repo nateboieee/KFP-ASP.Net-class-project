@@ -8,7 +8,7 @@ public class CartItem
     public int MenuItemId { get; set; }
     public string Name { get; set; } = string.Empty;
     public decimal Price { get; set; }
-    public string Icon { get; set; } = "🍗";
+    public string PlaceholderText { get; set; } = "No Photo Yet";
     public string? ImageUrl { get; set; }
     public int Quantity { get; set; }
 

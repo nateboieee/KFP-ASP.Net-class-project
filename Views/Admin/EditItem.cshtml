@@ -24,8 +24,8 @@
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
         <div class="col-6">
-            <label asp-for="Icon" class="form-label">Fallback Icon (emoji)</label>
-            <input asp-for="Icon" class="form-control" />
+            <label asp-for="PlaceholderText" class="form-label">Placeholder Text</label>
+            <input asp-for="PlaceholderText" class="form-control" />
             <div class="form-text">Shown only when there's no photo.</div>
         </div>
         <div class="col-12">
@@ -48,7 +48,7 @@
             <select asp-for="MenuCategoryId" class="form-select">
                 @foreach (var c in categories)
                 {
-                    <option value="@c.Id">@c.Icon @c.Name</option>
+                    <option value="@c.Id">@c.Name</option>
                 }
             </select>
         </div>

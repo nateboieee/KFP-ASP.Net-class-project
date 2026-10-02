@@ -17,12 +17,12 @@ public class MenuItem
     [Range(0, 10000)]
     public decimal Price { get; set; }
 
-    // Emoji shown as a fallback when no photo has been uploaded.
-    [StringLength(10)]
-    public string Icon { get; set; } = "🍗";
+    // Short text shown as a fallback when no photo has been uploaded yet (e.g. "No Photo Yet").
+    [StringLength(30)]
+    public string PlaceholderText { get; set; } = "No Photo Yet";
 
     // Relative path (e.g. "/images/menu/abc123.jpg") to an uploaded photo.
-    // Null/empty means "no photo yet" - the UI falls back to the emoji Icon.
+    // Null/empty means "no photo yet" - the UI falls back to PlaceholderText.
     [StringLength(300)]
     public string? ImageUrl { get; set; }
 

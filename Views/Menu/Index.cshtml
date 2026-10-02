@@ -19,7 +19,7 @@
         <a class="kfp-category-pill @(Model.SelectedCategoryId == null ? "active" : "")" asp-action="Index">All</a>
         @foreach (var c in Model.Categories)
         {
-            <a class="kfp-category-pill @(Model.SelectedCategoryId == c.Id ? "active" : "")" asp-action="Index" asp-route-categoryId="@c.Id">@c.Icon @c.Name</a>
+            <a class="kfp-category-pill @(Model.SelectedCategoryId == c.Id ? "active" : "")" asp-action="Index" asp-route-categoryId="@c.Id">@c.Name</a>
         }
     </div>
 
@@ -40,7 +40,7 @@
                         }
                         else
                         {
-                            <div class="kfp-card-icon">@item.Icon</div>
+                            <div class="kfp-placeholder">@item.PlaceholderText</div>
                         }
                     </a>
                     <div class="kfp-card-body">
